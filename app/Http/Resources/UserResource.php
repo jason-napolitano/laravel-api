@@ -2,10 +2,10 @@
 
 namespace App\Http\Resources {
 
-    use Illuminate\Http\Resources\Json\JsonResource;
+    use Illuminate\Http\Resources;
     use Illuminate\Http\Request;
 
-    class UserResource extends JsonResource
+    class UserResource extends Resources\Json\JsonResource
     {
         /**
          * @inheritdoc
