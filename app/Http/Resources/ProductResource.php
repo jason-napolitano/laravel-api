@@ -2,15 +2,14 @@
 
 namespace App\Http\Resources {
 
-    use Illuminate\Http\Resources;
-    use Illuminate\Http\Request;
+    use Illuminate\Http;
 
-    class ProductResource extends Resources\Json\JsonResource
+    class ProductResource extends Http\Resources\Json\JsonResource
     {
         /**
          * @inheritdoc
          */
-        public function toArray(Request $request): array
+        public function toArray(Http\Request $request): array
         {
             return [
                 'id'       => $this['id'],
