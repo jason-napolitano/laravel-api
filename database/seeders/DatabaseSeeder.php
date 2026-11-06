@@ -12,9 +12,9 @@ namespace Database\Seeders {
         public function run(): void
         {
             $this->call([
-	            PermissionSeeder::class,
-	            MemberSeeder::class,
-	            AdminSeeder::class,
+                PermissionSeeder::class,
+                MemberSeeder::class,
+                AdminSeeder::class,
             ]);
         }
     }

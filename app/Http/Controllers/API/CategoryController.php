@@ -22,7 +22,7 @@ namespace App\Http\Controllers\API {
         #[Authorize('view', 'category')]
         public function show(Category $category): Json\JsonResource
         {
-            return $category->load(['products' => fn($query) => $query->getLatest()])->toResource();
+            return $category->load(['products' => fn ($query) => $query->getLatest()])->toResource();
         }
 
         #[Authorize('create', Category::class)]
