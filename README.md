@@ -1,7 +1,8 @@
 # Laravel API
 > A Laravel 13+ powered API boilerplate. This boilerplate was built to give a good starting off point for RESTful
 > API's using Laravel 13+. It includes examples of using policies, gates, permissions, resources and more. All
-> unnecessary files (views, `package.json`, etc.) have been removed and all that is left is an API shell.
+> unnecessary files (views, `package.json`, `app.ts`, `bootstrap.ts`, etc.) have been removed and all that is left 
+> is a robust API shell.
 
 ## Setup
 
