@@ -1,7 +1,6 @@
 <?php
 
 use Symfony\Component\HttpFoundation\Response;
-use App\Http\Middleware\ForceJsonResponse;
 use Illuminate\Foundation\Configuration;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
@@ -14,7 +13,7 @@ return Application::configure(basePath: dirname(__DIR__))
         ]
     )
     ->withMiddleware(function (Configuration\Middleware $middleware): void {
-        $middleware->api(append: [ForceJsonResponse::class, 'throttle:api']);
+        $middleware->api(append: ['throttle:api']);
     })
     ->withExceptions(function (Configuration\Exceptions $exceptions): void {
         // convert all errors to JSON
