@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API {
 
+    use App\Models\Product;
     use Illuminate\Routing\Attributes\Controllers\Authorize;
     use App\Http\Requests\Categories\UpdateCategoryRequest;
     use App\Http\Requests\Categories\StoreCategoryRequest;
@@ -22,7 +23,7 @@ namespace App\Http\Controllers\API {
         #[Authorize('view', 'category')]
         public function show(Category $category): Json\JsonResource
         {
-            return $category->load(['products' => fn ($query) => $query->getLatest()])->toResource();
+            return $category->load(['products' => fn (Product $query) => $query->getLatest()])->toResource();
         }
 
         #[Authorize('create', Category::class)]
