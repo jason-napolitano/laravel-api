@@ -12,9 +12,9 @@ namespace App\Http\Resources {
         public function toArray(Http\Request $request): array
         {
             return [
-                'id'          => $this['id'],
-                'name'        => $this['name'],
-                'description' => $this['description'],
+                'id'          => $this->id,
+                'name'        => $this->name,
+                'description' => $this->description,
                 'products'    => ProductResource::collection($this->whenLoaded('products')),
             ];
         }
