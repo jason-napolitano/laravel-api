@@ -15,11 +15,11 @@ namespace App\Http\Controllers\Auth {
         /**
          * Authenticate a user
          *
-         * @param AuthRequests\AuthenticateUser $request
+         * @param AuthRequests\AuthenticateUserRequest $request
          *
          * @return Http\JsonResponse
          */
-        public function authenticate(AuthRequests\AuthenticateUser $request): Http\JsonResponse
+        public function authenticate(AuthRequests\AuthenticateUserRequest $request): Http\JsonResponse
         {
             // locate the user
             $user = User::where('email', $request['email'])->first();
@@ -44,11 +44,11 @@ namespace App\Http\Controllers\Auth {
         /**
          * Register a new user
          *
-         * @param AuthRequests\RegisterUser $request
+         * @param AuthRequests\RegisterUserRequest $request
          *
          * @return Http\JsonResponse
          */
-        public function register(AuthRequests\RegisterUser $request): Http\JsonResponse
+        public function register(AuthRequests\RegisterUserRequest $request): Http\JsonResponse
         {
             // validate the request
             $request->validated();

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Categories {
 
     use App\Http\Requests\BaseRequest;
 
-    class StoreCategory extends BaseRequest
+    class UpdateCategoryRequest extends BaseRequest
     {
         /**
          * Get the validation rules that apply to the request.
@@ -14,8 +14,8 @@ namespace App\Http\Requests\Categories {
         public function rules(): array
         {
             return [
-                'name'        => 'required|string|unique:categories',
-                'description' => 'required|string',
+                'name'        => 'nullable|string|unique:categories',
+                'description' => 'nullable|string',
             ];
         }
     }
