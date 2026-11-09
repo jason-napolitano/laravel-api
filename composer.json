@@ -9,9 +9,9 @@
         "laravel/framework": "^v13.40.0",
         "laravel/sanctum": "^v4.3.3",
         "laravel/tinker": "^v3.0.2",
-        "spatie/laravel-medialibrary": "^11.23.11",
-        "spatie/laravel-permission": "^8.3.2",
-        "spatie/laravel-query-builder": "^7.3.7"
+        "spatie/laravel-medialibrary": "^11.23.12",
+        "spatie/laravel-permission": "^8.5.0",
+        "spatie/laravel-query-builder": "^7.3.8"
     },
     "require-dev": {
         "fakerphp/faker": "^v1.24.1",
