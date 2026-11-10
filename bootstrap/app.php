@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\AuthorizeResourceControllers;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Foundation\Configuration;
 use Illuminate\Foundation\Application;
@@ -13,7 +14,9 @@ return Application::configure(basePath: dirname(__DIR__))
         ]
     )
     ->withMiddleware(function (Configuration\Middleware $middleware): void {
-        // $middleware->api(append: ['throttle:api']);
+        $middleware->alias([
+            'authorize-resources' => AuthorizeResourceControllers::class,
+        ]);
     })
     ->withExceptions(function (Configuration\Exceptions $exceptions): void {
         // convert all errors to JSON
