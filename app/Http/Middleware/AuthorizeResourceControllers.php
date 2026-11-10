@@ -3,7 +3,7 @@
 namespace App\Http\Middleware {
 
     use Symfony\Component\HttpFoundation\Response;
-    use App\Http\Attributes\AuthorizeMany;
+    use App\Http\Attributes\AuthorizeResource;
     use Illuminate\Support\Facades\Gate;
     use Illuminate\Http\Request;
     use ReflectionClass;
@@ -15,9 +15,7 @@ namespace App\Http\Middleware {
         protected array $abilities = [
             'index'   => 'viewAny',
             'show'    => 'view',
-            'create'  => 'create',
             'store'   => 'create',
-            'edit'    => 'update',
             'update'  => 'update',
             'destroy' => 'delete',
             'restore' => 'restore',
@@ -41,7 +39,7 @@ namespace App\Http\Middleware {
 
             $reflection = new ReflectionClass($controller);
 
-            $attributes = $reflection->getAttributes(AuthorizeMany::class);
+            $attributes = $reflection->getAttributes(AuthorizeResource::class);
 
             if (empty($attributes)) {
                 return $next($request);

@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\API {
 
     use App\Http\Requests\Categories as CategoryRequests;
-    use App\Http\Attributes\AuthorizeMany;
+    use App\Http\Attributes\AuthorizeResource;
     use App\Http\Resources\CategoryResource;
     use App\Http\Controllers\Controller;
     use Illuminate\Http\Resources\Json;
     use Illuminate\Http\Response;
     use App\Models\Category;
 
-    #[AuthorizeMany(model: Category::class, parameter: 'category')]
+    #[AuthorizeResource(model: Category::class, parameter: 'category')]
     class CategoryController extends Controller
     {
         public function index(): Json\ResourceCollection
