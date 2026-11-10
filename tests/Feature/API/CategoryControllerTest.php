@@ -82,7 +82,7 @@ describe('GET /api/categories/{category}', function () {
 
         foreach (range(1, 7) as $number) {
             $products->push(Product::create([
-                'name'        => "Product {$number}",
+                'name'        => "Product $number",
                 'price'       => 10 * $number,
                 'category_id' => $category->id,
                 'user_id'     => $user->id,
@@ -216,7 +216,7 @@ describe('PUT /api/categories/{category}', function () {
 
         $category = Category::factory()->create();
 
-        $this->putJson("/api/categories/{$category->id}", [
+        $this->putJson(route('categories.update', $category), [
             'name' => 'Updated Electronics',
         ])
             ->assertForbidden();
