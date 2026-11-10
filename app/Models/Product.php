@@ -26,9 +26,9 @@ namespace App\Models {
         // ------------------------------------------------
         // scopes
 
-        public function scopeGetLatest($builder, $count = 5, $by = 'created_at'): Eloquent\Builder
+        public function scopeGetLatest($builder, $count = 5): Eloquent\Builder
         {
-            return $builder->orderBy($by, 'desc')->limit($count);
+            return $builder->orderBy('created_at', 'desc')->limit($count);
         }
     }
 }
