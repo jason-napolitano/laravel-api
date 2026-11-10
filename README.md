@@ -6,6 +6,14 @@
 >
 > All files that are unrelated to an API (views, `package.json`, `app.ts`, `bootstrap.ts`, etc.) have been removed and
 > all that is left is a robust API shell. All tests are written using PestPHP and are included in the codebase.
+>
+> I built this boilerplate to circumvent the need to constantly implement these features each time I build an API using
+> Laravel 13. Since (at the time of creating this) there is no viable API starter-kit for Laravel that fits my needs, I 
+> felt it prudent to create one for my own use-cases.
+>
+> The sole objective is to give a balanced and configurable starting point with good out-of-the-box features, and examples 
+> of how to build an API architecture the "Laravel Way". This _should_ eliminate unnecessary code and allow the application 
+> to run as optimally as possible.
 
 ## Included in this repo:
 
@@ -27,9 +35,15 @@
     - `config/auth.php` has been updated to include two custom properties for the default role of a user, and the
       default admin role
 - Migrations, seeders, factories:
-  - All database data for testing is included via seeders, migrations and factories
+    - All database data for testing is included via seeders, migrations and factories
 - Fully tested codebase:
-  - All tests are written using `PestPHP`. All of the tests can be [found here](https://github.com/jason-napolitano/laravel-api/tree/main/tests)
+    - All tests are written using `PestPHP`. All of the tests can
+      be [found here](https://github.com/jason-napolitano/laravel-api/tree/main/tests)
+
+## Coming soon:
+
+- Forgot password functionality
+- API based OTP system
 
 ## Setup
 
