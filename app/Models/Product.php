@@ -5,7 +5,7 @@ namespace App\Models {
     use Illuminate\Database\Eloquent;
 
     /**
-     * @method Eloquent\Builder getLatest(int $count = 5, string $by = 'id', string $order = 'asc')
+     * @method Eloquent\Builder getLatest(int $count = 5)
      */
     #[Eloquent\Attributes\Fillable('name', 'price', 'category_id', 'user_id')]
     class Product extends BaseModel

@@ -89,8 +89,6 @@ describe('GET /api/categories/{category}', function () {
             ]));
         }
 
-        $expected = $products->reverse()->take(5)->pluck('id')->values()->all();
-
         $this->getJson(route('categories.show', $category))
             ->assertOk()
             ->assertJsonCount(5, 'data.products');
