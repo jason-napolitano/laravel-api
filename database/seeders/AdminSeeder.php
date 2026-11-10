@@ -14,7 +14,7 @@ namespace Database\Seeders {
         public function run(): void
         {
             // administrator
-            $admin = Role::create(['name' => env('APP_DEFAULT_ADMIN_ROLE')]);
+            $admin = Role::create(['name' => config('auth.default_admin_role')]);
             $admin->givePermissionTo('*');
 
             $name = fake()->name();

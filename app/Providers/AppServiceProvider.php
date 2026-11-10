@@ -12,7 +12,7 @@ namespace App\Providers {
         public function boot(): void
         {
             Support\Facades\Gate::before(
-                static fn ($user) => $user->hasRole(env('APP_DEFAULT_ADMIN_ROLE')) ? true : null
+                static fn ($user) => $user->hasRole(config('auth.default_admin_role')) ? true : null
             );
         }
     }
