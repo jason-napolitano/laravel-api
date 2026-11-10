@@ -8,33 +8,33 @@ namespace App\Http\Controllers\API {
     use App\Http\Controllers\Controller;
     use Illuminate\Http\Resources\Json;
     use Illuminate\Http\Response;
-    use App\Models;
+    use App\Models\Category;
 
-    #[AuthorizeResource(Models\Category::class, 'category')]
+    #[AuthorizeResource(Category::class, 'category')]
     class CategoryController extends Controller
     {
         public function index(): Json\ResourceCollection
         {
-            return Models\Category::paginate(5)->toResourceCollection();
+            return Category::paginate(5)->toResourceCollection();
         }
 
-        public function show(Models\Category $category): Json\JsonResource
+        public function show(Category $category): Json\JsonResource
         {
             return $category->load(['products' => fn ($query) => $query->getLatest()])->toResource();
         }
 
         public function store(CategoryRequests\StoreCategoryRequest $request): CategoryResource
         {
-            return Models\Category::create($request->validated())->toResource();
+            return Category::create($request->validated())->toResource();
         }
 
-        public function update(CategoryRequests\UpdateCategoryRequest $request, Models\Category $category): Json\JsonResource
+        public function update(CategoryRequests\UpdateCategoryRequest $request, Category $category): Json\JsonResource
         {
             $category->update($request->validated());
             return $category->toResource();
         }
 
-        public function destroy(Models\Category $category): Response
+        public function destroy(Category $category): Response
         {
             $category->delete();
             return response()->noContent();
