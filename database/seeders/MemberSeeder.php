@@ -13,7 +13,7 @@ namespace Database\Seeders {
         public function run(): void
         {
             // administrator
-            $member = Role::create(['name' => env('APP_DEFAULT_ROLE')]);
+            $member = Role::create(['name' => config('auth.default_role')]);
 
             $member->givePermissionTo('update_category');
             $member->givePermissionTo('view_categories');

@@ -57,7 +57,7 @@ namespace App\Http\Controllers\Auth {
             $user = User::create($request->only('name', 'email', 'password'));
 
             // assign the default role
-            $user->assignRole(env('APP_DEFAULT_ROLE'));
+            $user->assignRole(config('auth.default_role'));
 
             // generate the token
             $token = $user->createToken($request['device_name'])->plainTextToken;
