@@ -5,7 +5,7 @@ namespace App\Models {
     use Illuminate\Database\Eloquent;
 
     /**
-     * @method Eloquent\Collection getLatest(int $count = 5, string $by = 'id', string $order = 'asc')
+     * @method Eloquent\Builder getLatest(int $count = 5, string $by = 'id', string $order = 'asc')
      */
     #[Eloquent\Attributes\Fillable('name', 'price', 'category_id', 'user_id')]
     class Product extends BaseModel
@@ -26,9 +26,9 @@ namespace App\Models {
         // ------------------------------------------------
         // scopes
 
-        public function scopeGetLatest($builder, $count = 5, $by = 'id', $order = 'asc')
+        public function scopeGetLatest($builder, $count = 5, $by = 'id', $order = 'asc'): Eloquent\Builder
         {
-            return $builder->orderBy($by, $order)->limit($count)->get();
+            return $builder->orderBy($by, $order)->limit($count);
         }
     }
 }

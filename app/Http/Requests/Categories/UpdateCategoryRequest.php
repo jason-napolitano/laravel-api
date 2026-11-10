@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Categories {
 
     use App\Http\Requests\BaseRequest;
+    use Illuminate\Validation\Rule;
 
     class UpdateCategoryRequest extends BaseRequest
     {
@@ -14,7 +15,7 @@ namespace App\Http\Requests\Categories {
         public function rules(): array
         {
             return [
-                'name'        => 'nullable|string|unique:categories',
+                'name' => ['nullable', 'string', Rule::unique('categories', 'name')->ignore($this->route('category')),],
                 'description' => 'nullable|string',
             ];
         }

@@ -21,7 +21,7 @@ namespace App\Http\Controllers\API {
         #[Authorize('view', 'category')]
         public function show(Models\Category $category): Json\JsonResource
         {
-            return $category->load(['products' => fn (Models\Product $query) => $query->getLatest()])->toResource();
+            return $category->load(['products' => fn ($query) => $query->getLatest()])->toResource();
         }
 
         #[Authorize('create', Models\Category::class)]
