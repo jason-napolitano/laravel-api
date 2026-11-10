@@ -8,50 +8,50 @@ return [
      *
      * You can customize these query string parameters here.
      */
-    'parameters' => [
+    'parameters'                                  => [
         'include' => 'include',
-        'filter' => 'filter',
-        'sort' => 'sort',
-        'fields' => 'fields',
-        'append' => 'append',
+        'filter'  => 'filter',
+        'sort'    => 'sort',
+        'fields'  => 'fields',
+        'append'  => 'append',
     ],
 
     /*
      * The delimiter used to split array values in query parameters.
      * For example: ?filter[name]=John,Jane uses ',' as delimiter.
      */
-    'delimiter' => ',',
+    'delimiter'                                   => ',',
 
     /*
      * Related model aggregates are included using the relationship name suffixed with these strings.
      * For example: GET /users?include=postsCount or GET /users?include=postsViewsSum
      */
-    'suffixes' => [
-        'count' => 'Count',
+    'suffixes'                                    => [
+        'count'  => 'Count',
         'exists' => 'Exists',
-        'min' => 'Min',
-        'max' => 'Max',
-        'sum' => 'Sum',
-        'avg' => 'Avg',
+        'min'    => 'Min',
+        'max'    => 'Max',
+        'sum'    => 'Sum',
+        'avg'    => 'Avg',
     ],
 
     /*
      * By default the package will throw an `InvalidFilterQuery` exception when a filter in the
      * URL is not allowed in the `allowedFilters()` method.
      */
-    'disable_invalid_filter_query_exception' => false,
+    'disable_invalid_filter_query_exception'      => false,
 
     /*
      * By default the package will throw an `InvalidSortQuery` exception when a sort in the
      * URL is not allowed in the `allowedSorts()` method.
      */
-    'disable_invalid_sort_query_exception' => false,
+    'disable_invalid_sort_query_exception'        => false,
 
     /*
      * By default the package will throw an `InvalidIncludeQuery` exception when an include in the
      * URL is not allowed in the `allowedIncludes()` method.
      */
-    'disable_invalid_include_query_exception' => false,
+    'disable_invalid_include_query_exception'     => false,
 
     /*
      * By default, the package expects relationship names to be snake case plural when using fields[relationship].
@@ -74,7 +74,7 @@ return [
      * `camelCase` => Matches table names like 'top_orders' to 'fields[topOrders]'
      * `none` => Uses the exact table name
      */
-    'convert_relation_table_name_strategy' => null,
+    'convert_relation_table_name_strategy'        => null,
 
     /*
      * By default, the package expects the field names to match the database names
@@ -83,5 +83,5 @@ return [
      *
      * Set this to `true` if you want to convert the firstName into first_name for the underlying query
      */
-    'convert_field_names_to_snake_case' => false,
+    'convert_field_names_to_snake_case'           => false,
 ];

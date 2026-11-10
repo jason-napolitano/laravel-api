@@ -1,5 +1,7 @@
 <?php
 
+use Spatie\Permission\DefaultTeamResolver;
+
 return [
 
     'models' => [
@@ -75,7 +77,7 @@ return [
         /*
          * Change this if you want to name the related pivots other than defaults
          */
-        'role_pivot_key' => null, // default 'role_id',
+        'role_pivot_key'       => null, // default 'role_id',
         'permission_pivot_key' => null, // default 'permission_id',
 
         /*
@@ -108,7 +110,7 @@ return [
      * this will refresh permissions on every TickTerminated, TaskTerminated and RequestTerminated
      * NOTE: This should not be needed in most cases, but an Octane/Vapor combination benefited from it.
      */
-    'register_octane_reset_listener' => false,
+    'register_octane_reset_listener'   => false,
 
     /*
      * Events will fire when a role or permission is assigned/unassigned:
@@ -119,7 +121,7 @@ return [
      *
      * To enable, set to true, and then create listeners to watch these events.
      */
-    'events_enabled' => false,
+    'events_enabled'                   => false,
 
     /*
      * Teams Feature.
@@ -131,12 +133,12 @@ return [
      * (view the latest version of this package's migration file)
      */
 
-    'teams' => false,
+    'teams'         => false,
 
     /*
      * The class to use to resolve the permissions team id
      */
-    'team_resolver' => \Spatie\Permission\DefaultTeamResolver::class,
+    'team_resolver' => DefaultTeamResolver::class,
 
     /*
      * Passport Client Credentials Grant
@@ -183,7 +185,7 @@ return [
          * When permissions or roles are updated the cache is flushed automatically.
          */
 
-        'expiration_time' => \DateInterval::createFromDateString('24 hours'),
+        'expiration_time' => DateInterval::createFromDateString('24 hours'),
 
         /*
          * The cache key used to store all permissions.
