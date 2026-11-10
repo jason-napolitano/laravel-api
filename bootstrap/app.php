@@ -25,10 +25,10 @@ return Application::configure(basePath: dirname(__DIR__))
         );
 
         // format error message returned by the response
-        $exceptions->respond(function (Response $response) {
-            return response()->json([
-                'message' => Response::$statusTexts[$response->getStatusCode()] ?? 'An unexpected error occurred.',
-                'status'  => $response->getStatusCode(),
-            ], $response->getStatusCode());
-        });
+        // $exceptions->respond(function (Response $response) {
+        //     return response()->json([
+        //         'message' => Response::$statusTexts[$response->getStatusCode()] ?? 'An unexpected error occurred.',
+        //         'status'  => $response->getStatusCode(),
+        //     ], $response->getStatusCode());
+        // });
     })->create();
