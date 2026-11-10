@@ -10,7 +10,7 @@ namespace App\Http\Controllers\API {
     use Illuminate\Http\Response;
     use App\Models\Category;
 
-    #[AuthorizeResource(Category::class, 'category')]
+    #[AuthorizeResource(model: Category::class, parameter: 'category')]
     class CategoryController extends Controller
     {
         public function index(): Json\ResourceCollection

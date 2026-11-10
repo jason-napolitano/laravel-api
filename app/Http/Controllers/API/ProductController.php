@@ -12,7 +12,7 @@ namespace App\Http\Controllers\API {
     use Spatie\QueryBuilder;
     use App\Models\Product;
 
-    #[AuthorizeResource(Product::class, 'product')]
+    #[AuthorizeResource(model: Product::class, parameter: 'product')]
     class ProductController extends Controller
     {
         public function index(): Json\ResourceCollection
