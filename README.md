@@ -8,21 +8,22 @@
 > all that is left is a robust API shell. All tests are written using PestPHP and are included in the codebase.
 >
 > I built this boilerplate to circumvent the need to constantly implement these features each time I build an API using
-> Laravel 13. Since (at the time of creating this) there is no viable API starter-kit for Laravel that fits my needs, I 
+> Laravel 13. Since (at the time of creating this) there is no viable API starter-kit for Laravel that fits my needs, I
 > felt it prudent to create one for my own use-cases.
 >
-> The sole objective is to give a balanced and configurable starting point with good out-of-the-box features, and examples 
-> of how to build an API architecture the "Laravel Way". This _should_ eliminate unnecessary code and allow the application 
-> to run as optimally as possible.
+> The sole objective is to give a balanced and configurable starting point with good out-of-the-box features, and
+> examples of how to build an API architecture the "Laravel Way". This _should_ eliminate unnecessary code and allow 
+> the application to run as optimally as possible.
 
 ## Included in this repo:
 
 - Example controllers
     - with appropriate request classes and resource routes. Also included is the `AuthorizeResource` attribute which
-      allows you to run `Authorize` on all controller action methods by including a single attribute in the controller and not
-      on-per-method
+      allows you to run `Authorize` on all controller action methods by including a single attribute in the controller
+      and not one attribute per method
     - example query filtering using `spatie/laravel-query-builder`
-    - authentication controllers which are protected by `sanctum` as well as the necessary logic to log a user in
+    - authentication controllers which are protected by `sanctum` as well as the necessary logic to log a user in,
+      assign the user a token and log a user out of one, or multiple devices
 - Example models:
     - with appropriate relationship eager loaded and all policies written and authorized using
       `spatie/laravel-permission`
