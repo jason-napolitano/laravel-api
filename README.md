@@ -19,7 +19,7 @@
 
 - Example controllers
     - with appropriate request classes and resource routes. Also included is the `AuthorizeResource` attribute which
-      allows you to run `Authorize` on all controller action methods by including on attribute in the controller and not
+      allows you to run `Authorize` on all controller action methods by including a single attribute in the controller and not
       on-per-method
     - example query filtering using `spatie/laravel-query-builder`
     - authentication controllers which are protected by `sanctum` as well as the necessary logic to log a user in
