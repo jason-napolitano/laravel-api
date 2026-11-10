@@ -1,11 +1,35 @@
 # Laravel API
 
 > A Laravel 13+ powered API boilerplate. This boilerplate was built to give a good starting off point for RESTful
-> API's using Laravel 13+. It includes examples of using policies, observers, gates, permissions, model resources, 
-> a custom `AuthorizeResource` controller attribute, enhanced JSON error handling and more. 
-> 
-> All files that are unrelated to an API (views, `package.json`, `app.ts`, `bootstrap.ts`, etc.) have been removed and 
+> API's using Laravel 13+. It includes examples of using policies, observers, gates, permissions, model resources,
+> a custom `AuthorizeResource` controller attribute, enhanced JSON error handling and more.
+>
+> All files that are unrelated to an API (views, `package.json`, `app.ts`, `bootstrap.ts`, etc.) have been removed and
 > all that is left is a robust API shell. All tests are written using PestPHP and are included in the codebase.
+
+## Included in this repo:
+
+- Example controllers
+    - with appropriate request classes and resource routes. Also included is the `AuthorizeResource` attribute which
+      allows you to run `Authorize` on all controller action methods by including on attribute in the controller and not
+      on-per-method
+    - example query filtering using `spatie/laravel-query-builder`
+    - authentication controllers which are protected by `sanctum` as well as the necessary logic to log a user in
+- Example models:
+    - with appropriate relationship eager loaded and all policies written and authorized using
+      `spatie/laravel-permission`
+    - resource classes are used to shape the model data
+    - observers to allow for updating model fields upon creating and updating a model
+- Custom `bootstrap/app.php`:
+    - `bootstrap/app.php` has been customized to allow for JSON error handling, and custom error messages returned by
+      the server
+- Custom config:
+    - `config/auth.php` has been updated to include two custom properties for the default role of a user, and the
+      default admin role
+- Migrations, seeders, factories:
+  - All database data for testing is included via seeders, migrations and factories
+- Fully tested codebase:
+  - All tests are written using `PestPHP`. All of the tests can be [found here](https://github.com/jason-napolitano/laravel-api/tree/main/tests)
 
 ## Setup
 
