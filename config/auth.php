@@ -24,7 +24,8 @@ return [
     |--------------------------------------------------------------------------
     | Default Role
     |--------------------------------------------------------------------------
-    | The default role for the  user
+    | The default role for the authenticated user. This roles is managed by
+    | Spatie's laravel-permission package.
     */
     'default_role' => env('APP_DEFAULT_ROLE', 'member'),
 
