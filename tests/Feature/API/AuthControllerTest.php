@@ -1,10 +1,10 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Guard;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Guard;
+use App\Models\User;
 
 uses(RefreshDatabase::class);
 
