@@ -67,10 +67,7 @@ describe('POST /auth/login', function () {
         ])
             ->assertUnprocessable()
             ->assertJsonValidationErrors('password')
-            ->assertJsonPath(
-                'errors.password.0',
-                'The credentials provided are incorrect.'
-            );
+            ->assertJsonPath('errors.password.0', 'The credentials provided are incorrect.');
 
         $this->assertDatabaseCount('personal_access_tokens', 0);
     });
