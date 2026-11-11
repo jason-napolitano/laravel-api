@@ -50,12 +50,8 @@ namespace App\Http\Controllers\Auth {
             ]);
 
             $status = Password::reset(
-                $request->only(
-                    'email',
-                    'password',
-                    'password_confirmation',
-                    'token'
-                ),
+                $request->only('email', 'password', 'password_confirmation', 'token'),
+
                 function (User $user, string $password) {
                     $user->forceFill([
                         'password' => Hash::make($password),
@@ -74,7 +70,7 @@ namespace App\Http\Controllers\Auth {
             }
 
             return response()->json([
-                'message' => __($status),
+                'message' => $status,
             ], 422);
         }
     }
