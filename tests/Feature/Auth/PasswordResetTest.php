@@ -19,7 +19,7 @@ it('sends a password reset notification to an existing user', function () {
     Notification::fake();
 
     $user = User::factory()->create();
-    $response = $this->postJson('/api/auth/forgot-password', [
+    $response = $this->postJson(route('auth.forgot_password'), [
         'email' => $user->email,
     ]);
 
@@ -35,7 +35,7 @@ it('sends a password reset notification to an existing user', function () {
 it('does not reveal whether an email address exists', function () {
     Notification::fake();
 
-    $response = $this->postJson('/api/auth/forgot-password', [
+    $response = $this->postJson(route('auth.forgot_password'), [
         'email' => 'nonexistent@example.com',
     ]);
     $response
@@ -48,7 +48,7 @@ it('does not reveal whether an email address exists', function () {
 });
 
 it('validates the email address when requesting a reset', function () {
-    $this->postJson('/api/auth/forgot-password', [
+    $this->postJson(route('auth.forgot_password'), [
         'email' => 'invalid-email',
     ])
         ->assertUnprocessable()
@@ -65,7 +65,8 @@ it('successfully resets a user password', function () {
     $user = User::factory()->create();
     $token = Password::createToken($user);
     $newPassword = 'NewSecurePassword123!';
-    $response = $this->postJson('/api/auth/reset-password', [
+
+    $response = $this->postJson(route('auth.reset_password'), [
         'email'                 => $user->email,
         'token'                 => $token,
         'password'              => $newPassword,
@@ -83,7 +84,8 @@ it('successfully resets a user password', function () {
 
 it('rejects an invalid password reset token', function () {
     $user = User::factory()->create();
-    $response = $this->postJson('/api/auth/reset-password', [
+
+    $response = $this->postJson(route('auth.reset_password'), [
         'email'                 => $user->email,
         'token'                 => 'invalid-token',
         'password'              => 'NewSecurePassword123!',
@@ -104,8 +106,9 @@ it('does not allow a password reset token to be reused', function () {
         'password_confirmation' => 'NewSecurePassword123!',
     ];
 
-    $this->postJson('/api/auth/reset-password', $payload)->assertOk();
-    $this->postJson('/api/auth/reset-password', [
+    $this->postJson(route('auth.reset_password'), $payload)->assertOk();
+
+    $this->postJson(route('auth.reset_password'), [
         ...$payload,
         'password'              => 'AnotherSecurePassword123!',
         'password_confirmation' => 'AnotherSecurePassword123!',
@@ -115,7 +118,8 @@ it('does not allow a password reset token to be reused', function () {
 it('validates password confirmation when resetting a password', function () {
     $user = User::factory()->create();
     $token = Password::createToken($user);
-    $this->postJson('/api/auth/reset-password', [
+
+    $this->postJson(route('auth.reset_password'), [
         'email'                 => $user->email,
         'token'                 => $token,
         'password'              => 'NewSecurePassword123!',
@@ -126,7 +130,7 @@ it('validates password confirmation when resetting a password', function () {
 });
 
 it('requires all password reset fields', function () {
-    $this->postJson('/api/auth/reset-password', [])
+    $this->postJson(route('auth.reset_password'), [])
         ->assertUnprocessable()
         ->assertJsonValidationErrors([
             'email',
