@@ -41,10 +41,9 @@
     - All tests are written using `PestPHP`. All of the tests can
       be [found here](https://github.com/jason-napolitano/laravel-api/tree/main/tests)
 
-## Coming soon:
-
-- Forgot password functionality
-- API based OTP system
+## Future implementations:
+- [x] Forgot password functionality
+- [ ] API based OTP system
 
 ## Setup
 
