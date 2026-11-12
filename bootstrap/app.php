@@ -26,7 +26,7 @@ return Application::configure(basePath: dirname(__DIR__))
 
         // format error message returned by the response
         $exceptions->respond(function (Response $response) {
-            $content = json_decode($response->getContent(), true, 512, JSON_THROW_ON_ERROR) ?? [];
+            $content = json_decode($response->getContent(), true) ?? [];
 
             $data = [
                 'message' => $content['message'] ?? Response::$statusTexts[$response->getStatusCode()] ?? 'An unexpected error occurred.',
