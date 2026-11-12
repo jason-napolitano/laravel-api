@@ -1,181 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Reset Your Password</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
 
-    <title>Reset Your Password</title>
-</head>
+    <body class="m-0 bg-zinc-100 px-4 py-10 font-sans text-zinc-900">
+        <table class="w-full" role="presentation">
+            <tr>
+                <td>
+                    <table class="w-full max-w-[560px] overflow-hidden rounded-lg bg-white" role="presentation">
+                        <tr>
+                            <td class="bg-zinc-900 px-8 py-8 text-center text-white">
+                                <h1 class="m-0 text-2xl font-bold">
+                                    Password Reset
+                                </h1>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="p-8">
+                                <p class="text-base">
+                                    Hello {{ $user->name ?? 'there' }},
+                                </p>
+                                <p class="text-[15px] leading-7 text-zinc-600">
+                                    We received a request to reset the password
+                                    associated with your account.
+                                </p>
+                                <p class="text-[15px] leading-7 text-zinc-600">
+                                    Click the button below to choose a new
+                                    password.
+                                </p>
 
-<body style="
-    margin: 0;
-    padding: 40px 15px;
-    background-color: #f4f4f5;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #18181b;
-">
+                                <table class="w-full" role="presentation">
+                                    <tr>
+                                        <td class="py-6">
+                                            <a href="{{ $url }}" class="inline-block rounded-md bg-blue-600 px-7 py-3.5 text-[15px] font-bold text-white no-underline">
+                                                Reset Password
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </table>
 
-<table
-    width="100%"
-    cellpadding="0"
-    cellspacing="0"
-    role="presentation"
->
-    <tr>
-        <td align="center">
+                                <p class="text-sm leading-7 text-zinc-600">
+                                    This password reset link will expire in
+                                    {{ config('auth.passwords.users.expire') }}
+                                    minutes.
+                                </p>
 
-            <table
-                width="100%"
-                cellpadding="0"
-                cellspacing="0"
-                role="presentation"
-                style="
-                        max-width: 560px;
-                        background-color: #ffffff;
-                        border-radius: 8px;
-                        overflow: hidden;
-                    "
-            >
-                <tr>
-                    <td style="
-                            padding: 32px;
-                            text-align: center;
-                            background-color: #18181b;
-                            color: #ffffff;
-                        ">
-                        <h1 style="
-                                margin: 0;
-                                font-size: 24px;
-                            ">
-                            Password Reset
-                        </h1>
-                    </td>
-                </tr>
+                                <p class="text-sm leading-7 text-zinc-600">
+                                    If you did not request a password reset,
+                                    you can safely ignore this email.
+                                </p>
 
-                <tr>
-                    <td style="padding: 32px;">
+                                <hr class="my-8 border-0 border-t border-solid border-zinc-200">
 
-                        <p style="font-size: 16px;">
-                            Hello {{ $user->name ?? 'there' }},
-                        </p>
+                                <p class="text-xs leading-6 text-zinc-400">
+                                    If the button above doesn't work, copy and
+                                    paste the following URL into your browser:
+                                </p>
 
-                        <p style="
-                                font-size: 15px;
-                                line-height: 1.7;
-                                color: #52525b;
-                            ">
-                            We received a request to reset the password
-                            associated with your account.
-                        </p>
-
-                        <p style="
-                                font-size: 15px;
-                                line-height: 1.7;
-                                color: #52525b;
-                            ">
-                            Click the button below to choose a new
-                            password.
-                        </p>
-
-                        <table
-                            width="100%"
-                            cellpadding="0"
-                            cellspacing="0"
-                            role="presentation"
-                        >
-                            <tr>
-                                <td
-                                    align="center"
-                                    style="padding: 25px 0;"
-                                >
-                                    <a
-                                        href="{{ $url }}"
-                                        style="
-                                                display: inline-block;
-                                                padding: 14px 28px;
-                                                background-color: #2563eb;
-                                                color: #ffffff;
-                                                text-decoration: none;
-                                                border-radius: 6px;
-                                                font-size: 15px;
-                                                font-weight: bold;
-                                            "
-                                    >
-                                        Reset Password
+                                <p class="break-all text-xs leading-6">
+                                    <a href="{{ $url }}" class="text-blue-600">
+                                        {{ $url }}
                                     </a>
-                                </td>
-                            </tr>
-                        </table>
+                                </p>
 
-                        <p style="
-                                font-size: 14px;
-                                line-height: 1.7;
-                                color: #52525b;
-                            ">
-                            This password reset link will expire in
-                            {{ config('auth.passwords.users.expire') }}
-                            minutes.
-                        </p>
+                            </td>
+                        </tr>
 
-                        <p style="
-                                font-size: 14px;
-                                line-height: 1.7;
-                                color: #52525b;
-                            ">
-                            If you did not request a password reset,
-                            you can safely ignore this email.
-                        </p>
+                        <tr>
+                            <td class="bg-zinc-50 px-5 py-5 text-center text-xs text-zinc-400">
+                                &copy; {{ date('Y') }} {{ config('app.name') }}. All rights reserved.
+                            </td>
+                        </tr>
 
-                        <hr style="
-                                margin: 30px 0;
-                                border: 0;
-                                border-top: 1px solid #e4e4e7;
-                            ">
-
-                        <p style="
-                                font-size: 12px;
-                                line-height: 1.6;
-                                color: #a1a1aa;
-                            ">
-                            If the button above doesn't work, copy and
-                            paste the following URL into your browser:
-                        </p>
-
-                        <p style="
-                                font-size: 12px;
-                                line-height: 1.6;
-                                word-break: break-all;
-                            ">
-                            <a
-                                href="{{ $url }}"
-                                style="color: #2563eb;"
-                            >
-                                {{ $url }}
-                            </a>
-                        </p>
-
-                    </td>
-                </tr>
-
-                <tr>
-                    <td style="
-                            padding: 20px;
-                            text-align: center;
-                            background-color: #fafafa;
-                            color: #a1a1aa;
-                            font-size: 12px;
-                        ">
-                        &copy; {{ date('Y') }}
-                        {{ config('app.name') }}.
-                        All rights reserved.
-                    </td>
-                </tr>
-
-            </table>
-
-        </td>
-    </tr>
-</table>
-
-</body>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </body>
 </html>
