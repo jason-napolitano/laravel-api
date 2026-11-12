@@ -5,20 +5,20 @@
     "require": {
         "php": "^8.3",
         "barryvdh/laravel-dompdf": "^v3.1.2",
-        "laravel/ai": "^v1.3.0",
-        "laravel/framework": "^v13.40.0",
-        "laravel/sanctum": "^v4.3.3",
-        "laravel/tinker": "^v3.0.2",
+        "laravel/ai": "^v1.4.0",
+        "laravel/framework": "^v13.42.0",
+        "laravel/sanctum": "^v4.4.0",
+        "laravel/tinker": "^v3.1.0",
         "spatie/laravel-medialibrary": "^11.23.12",
         "spatie/laravel-permission": "^8.5.0",
         "spatie/laravel-query-builder": "^7.3.8"
     },
     "require-dev": {
         "fakerphp/faker": "^v1.24.1",
-        "laravel/pail": "^v1.2.7",
-        "laravel/pint": "^v1.32.1",
+        "laravel/pail": "^v1.3.0",
+        "laravel/pint": "^v1.32.3",
         "mockery/mockery": "^1.6.15",
-        "nunomaduro/collision": "^v8.9.5",
+        "nunomaduro/collision": "^v8.9.6",
         "pestphp/pest": "^v5.3.5",
         "pestphp/pest-plugin-laravel": "^v5.0.1"
     },
