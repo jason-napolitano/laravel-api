@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Auth\Notifications\ResetPassword;
+use App\Notifications\ResetPasswordNotification;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Hash;
@@ -29,7 +29,9 @@ it('sends a password reset notification to an existing user', function () {
             'message' => 'If an account exists with that email address, a password reset link has been sent.',
         ]);
 
-    Notification::assertSentTo($user, ResetPassword::class);
+    Notification::assertSentTo($user, function (ResetPasswordNotification $notification) {
+        return !empty($notification->token);
+    });
 });
 
 it('does not reveal whether an email address exists', function () {

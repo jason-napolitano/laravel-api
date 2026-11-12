@@ -2,6 +2,7 @@
 
 namespace App\Models {
 
+    use App\Notifications\ResetPasswordNotification;
     use Illuminate\Foundation\Auth\User as Authenticatable;
     use Illuminate\Notifications\Notifiable;
     use Spatie\Permission\Traits\HasRoles;
@@ -34,6 +35,11 @@ namespace App\Models {
         public function products(): Eloquent\Relations\HasMany
         {
             return $this->hasMany(Product::class, 'user_id', 'id');
+        }
+
+        public function sendPasswordResetNotification($token): void
+        {
+            $this->notify(new ResetPasswordNotification($token));
         }
     }
 }

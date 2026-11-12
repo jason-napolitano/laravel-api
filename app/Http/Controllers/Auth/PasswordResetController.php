@@ -15,6 +15,10 @@ namespace App\Http\Controllers\Auth {
     {
         /**
          * Send a password reset link.
+         *
+         * @param Request $request
+         *
+         * @return JsonResponse
          */
         public function sendResetLink(Request $request): JsonResponse
         {
@@ -34,12 +38,16 @@ namespace App\Http\Controllers\Auth {
             }
 
             return response()->json([
-                'message' => 'If an account exists with that email address, a password reset link has been sent.',
+                'message' => 'If an account exists with that email address, a password reset link will be sent.',
             ]);
         }
 
         /**
          * Reset the user's password.
+         *
+         * @param Request $request
+         *
+         * @return JsonResponse
          */
         public function resetPassword(Request $request): JsonResponse
         {
@@ -51,7 +59,6 @@ namespace App\Http\Controllers\Auth {
 
             $status = Password::reset(
                 $request->only('email', 'password', 'password_confirmation', 'token'),
-
                 function (User $user, string $password) {
                     $user->forceFill([
                         'password' => Hash::make($password),
