@@ -41,3 +41,14 @@ Route::prefix('auth')->group(function () {
             ->name('auth.logout-all');
     });
 });
+
+
+Route::get('/preview/password-reset', function () {
+    return view('emails.auth.password-reset', [
+        'user' => (object) [
+            'name' => 'John Doe',
+            'email' => 'john@example.com',
+        ],
+        'url' => 'http://localhost:8000/reset-password/sample-token',
+    ]);
+})->name('mail.preview.password-reset');
