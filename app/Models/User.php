@@ -2,8 +2,8 @@
 
 namespace App\Models {
 
-    use App\Notifications\ResetPasswordNotification;
     use Illuminate\Foundation\Auth\User as Authenticatable;
+    use App\Notifications\ResetPasswordNotification;
     use Illuminate\Notifications\Notifiable;
     use Spatie\Permission\Traits\HasRoles;
     use Laravel\Sanctum\HasApiTokens;
