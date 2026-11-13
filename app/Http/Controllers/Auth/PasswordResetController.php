@@ -22,6 +22,8 @@ namespace App\Http\Controllers\Auth {
          */
         public function sendResetLink(Request $request): JsonResponse
         {
+            abort_if(!$this->settings->enable_password_reset, 404, 'Not Found');
+
             $request->validate([
                 'email' => ['required', 'email'],
             ]);

@@ -15,6 +15,7 @@ namespace Database\Seeders {
                 PermissionSeeder::class,
                 MemberSeeder::class,
                 AdminSeeder::class,
+                SettingSeeder::class,
             ]);
         }
     }
