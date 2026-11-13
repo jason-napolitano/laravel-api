@@ -8,12 +8,12 @@ Route::prefix('auth')->group(function () {
     Route::middleware('guest')->group(function () {
         // ------------------------------------------------
         // login
-        Route::post('login', [Controllers\Auth\AuthController::class, 'authenticate'])
+        Route::post('login', [Controllers\Auth\AuthenticationController::class, 'authenticate'])
             ->name('auth.login');
 
         // ------------------------------------------------
         // register
-        Route::post('register', [Controllers\Auth\AuthController::class, 'register'])
+        Route::post('register', [Controllers\Auth\AuthenticationController::class, 'register'])
             ->name('auth.register');
 
         // ------------------------------------------------
@@ -32,12 +32,12 @@ Route::prefix('auth')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         // ------------------------------------------------
         // logout of current device
-        Route::post('logout', [Controllers\Auth\AuthController::class, 'destroy'])
+        Route::post('logout', [Controllers\Auth\AuthenticationController::class, 'destroy'])
             ->name('auth.logout');
 
         // ------------------------------------------------
         // logout of all devices
-        Route::post('logout-all', [Controllers\Auth\AuthController::class, 'destroyAll'])
+        Route::post('logout-all', [Controllers\Auth\AuthenticationController::class, 'destroyAll'])
             ->name('auth.logout-all');
     });
 });

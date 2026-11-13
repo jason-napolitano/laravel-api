@@ -10,7 +10,7 @@ namespace App\Http\Controllers\Auth {
     use Illuminate\Http;
     use App\Models\User;
 
-    class AuthController extends Controller
+    class AuthenticationController extends Controller
     {
         /**
          * Authenticate a user
