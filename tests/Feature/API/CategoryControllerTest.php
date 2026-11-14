@@ -1,29 +1,6 @@
 <?php
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Guard;
-use App\Models\Category;
-use App\Models\Product;
-use App\Models\User;
-
-uses(RefreshDatabase::class);
-
-beforeEach(function () {
-    $this->user = User::factory()->create();
-
-    $this->grantPermission = function (string $permission): void {
-        $guard = Guard::getDefaultName(User::class);
-
-        Permission::findOrCreate($permission, $guard);
-
-        $this->user->givePermissionTo($permission);
-    };
-
-    $this->authenticate = function (): void {
-        $this->actingAs($this->user);
-    };
-});
+use App\Models;
 
 describe('GET /api/categories', function () {
 
@@ -31,7 +8,7 @@ describe('GET /api/categories', function () {
         ($this->grantPermission)('view_categories');
         ($this->authenticate)();
 
-        Category::factory()->count(7)->create();
+        Models\Category::factory()->count(7)->create();
 
         $this->getJson(route('categories.index'))
             ->assertOk()
@@ -44,7 +21,7 @@ describe('GET /api/categories', function () {
         ($this->grantPermission)('view_categories');
         ($this->authenticate)();
 
-        Category::factory()->count(7)->create();
+        Models\Category::factory()->count(7)->create();
 
         $this->getJson(route('categories.index', ['page' => 2]))
             ->assertOk()
@@ -66,7 +43,7 @@ describe('GET /api/categories/{category}', function () {
         ($this->grantPermission)('view_category');
         ($this->authenticate)();
 
-        $category = Category::factory()->create();
+        $category = Models\Category::factory()->create();
 
         $this->getJson(route('categories.show', $category))->assertOk();
     });
@@ -75,13 +52,13 @@ describe('GET /api/categories/{category}', function () {
         ($this->grantPermission)('view_category');
         ($this->authenticate)();
 
-        $category = Category::factory()->create();
-        $user = User::factory()->create();
+        $category = Models\Category::factory()->create();
+        $user = Models\User::factory()->create();
 
         $products = collect();
 
         foreach (range(1, 7) as $number) {
-            $products->push(Product::create([
+            $products->push(Models\Product::create([
                 'name'        => "Product $number",
                 'price'       => 10 * $number,
                 'category_id' => $category->id,
@@ -98,7 +75,7 @@ describe('GET /api/categories/{category}', function () {
         ($this->grantPermission)('view_category');
         ($this->authenticate)();
 
-        $category = Category::factory()->create();
+        $category = Models\Category::factory()->create();
 
         $this->getJson(route('categories.show', $category))
             ->assertOk()
@@ -108,7 +85,7 @@ describe('GET /api/categories/{category}', function () {
     it('denies users without the required permission', function () {
         ($this->authenticate)();
 
-        $category = Category::factory()->create();
+        $category = Models\Category::factory()->create();
 
         $this->getJson(route('categories.show', $category))
             ->assertForbidden();
@@ -118,7 +95,7 @@ describe('GET /api/categories/{category}', function () {
         ($this->grantPermission)('view_category');
         ($this->authenticate)();
 
-        $this->getJson('/api/categories/999999')
+        $this->getJson(route('categories.show', 9999))
             ->assertNotFound();
     });
 
@@ -135,7 +112,7 @@ describe('POST /api/categories', function () {
             'description' => 'Electronic products and accessories.',
         ];
 
-        $this->postJson('/api/categories', $data)
+        $this->postJson(route('categories.store'), $data)
             ->assertCreated()
             ->assertJsonPath('data.name', $data['name'])
             ->assertJsonPath('data.description', $data['description']);
@@ -165,7 +142,7 @@ describe('PUT /api/categories/{category}', function () {
         ($this->grantPermission)('update_category');
         ($this->authenticate)();
 
-        $category = Category::factory()->create();
+        $category = Models\Category::factory()->create();
 
         $data = [
             'name'        => 'Updated Electronics',
@@ -189,7 +166,7 @@ describe('PUT /api/categories/{category}', function () {
         ($this->grantPermission)('update_category');
         ($this->authenticate)();
 
-        $category = Category::factory()->create([
+        $category = Models\Category::factory()->create([
             'name' => 'Electronics',
         ]);
 
@@ -205,7 +182,7 @@ describe('PUT /api/categories/{category}', function () {
         ($this->grantPermission)('update_category');
         ($this->authenticate)();
 
-        $category = Category::factory()->create();
+        $category = Models\Category::factory()->create();
 
         $this->putJson(route('categories.update', $category), [])
             ->assertOk();
@@ -214,7 +191,7 @@ describe('PUT /api/categories/{category}', function () {
     it('denies users without the required permission', function () {
         ($this->authenticate)();
 
-        $category = Category::factory()->create();
+        $category = Models\Category::factory()->create();
 
         $this->putJson(route('categories.update', $category), [
             'name' => 'Updated Electronics',
@@ -230,7 +207,7 @@ describe('DELETE /api/categories/{category}', function () {
         ($this->grantPermission)('delete_category');
         ($this->authenticate)();
 
-        $category = Category::factory()->create();
+        $category = Models\Category::factory()->create();
 
         $this->deleteJson(route('categories.destroy', $category))
             ->assertNoContent();
@@ -243,7 +220,7 @@ describe('DELETE /api/categories/{category}', function () {
     it('denies users without the required permission', function () {
         ($this->authenticate)();
 
-        $category = Category::factory()->create();
+        $category = Models\Category::factory()->create();
 
         $this->deleteJson(route('categories.destroy', $category))
             ->assertForbidden();
