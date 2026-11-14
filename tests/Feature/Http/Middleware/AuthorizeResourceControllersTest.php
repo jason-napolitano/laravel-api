@@ -1,12 +1,11 @@
-
 <?php
 
 use Illuminate\Routing\Attributes\Controllers\Authorize;
 use App\Http\Middleware\AuthorizeResourceControllers;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Http\Attributes\AuthorizeController;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Gate;
 use App\Models\Product;
 use App\Models\User;
 
@@ -14,10 +13,10 @@ uses(RefreshDatabase::class);
 
 beforeEach(function () {
     Route::middleware(['api', AuthorizeResourceControllers::class])
-        ->get('/_tests/products', [AuthorizeResourceControllerFixture::class, 'index',]);
+        ->get('/_tests/products', [AuthorizeResourceController::class, 'index',]);
 
     Route::middleware(['api', AuthorizeResourceControllers::class])
-        ->put('/_tests/products/{product}', [AuthorizeResourceControllerFixture::class, 'update',]);
+        ->put('/_tests/products/{product}', [AuthorizeResourceController::class, 'update',]);
 });
 
 /*
@@ -77,7 +76,7 @@ it('still enforces authorization through the native authorize attribute', functi
 */
 
 #[AuthorizeController(model: Product::class, parameter: 'product')]
-class AuthorizeResourceControllerFixture
+class AuthorizeResourceController
 {
     public function index()
     {
