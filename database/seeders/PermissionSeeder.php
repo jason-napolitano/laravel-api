@@ -14,6 +14,10 @@ namespace Database\Seeders {
         {
             // --------------------------------------------
             // categories
+            Permission::create(['name' => 'update_settings']);
+
+            // --------------------------------------------
+            // categories
             Permission::create(['name' => 'update_category']);
             Permission::create(['name' => 'delete_category']);
             Permission::create(['name' => 'view_categories']);

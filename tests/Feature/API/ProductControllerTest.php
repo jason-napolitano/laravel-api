@@ -1,6 +1,29 @@
 <?php
 
-use App\Models;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Guard;
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\User;
+
+uses(RefreshDatabase::class);
+
+beforeEach(function () {
+    $this->user = User::factory()->create();
+
+    $this->grantPermission = function (string $permission): void {
+        $guard = Guard::getDefaultName(User::class);
+
+        Permission::findOrCreate($permission, $guard);
+
+        $this->user->givePermissionTo($permission);
+    };
+
+    $this->authenticate = function (): void {
+        $this->actingAs($this->user);
+    };
+});
 
 // ------------------------------------------------
 // index
@@ -11,7 +34,7 @@ describe('GET /api/products', function () {
         ($this->grantPermission)('view_all_products');
         ($this->authenticate)();
 
-        Models\Product::factory()->count(7)->create();
+        Product::factory()->count(7)->create();
 
         $this->getJson(route('products.index'))
             ->assertOk()
@@ -24,7 +47,7 @@ describe('GET /api/products', function () {
         ($this->grantPermission)('view_all_products');
         ($this->authenticate)();
 
-        Models\Product::factory()->count(7)->create();
+        Product::factory()->count(7)->create();
 
         $this->getJson(route('products.index', ['page' => 2]))
             ->assertOk()
@@ -36,19 +59,19 @@ describe('GET /api/products', function () {
         ($this->grantPermission)('view_all_products');
         ($this->authenticate)();
 
-        $electronics = Models\Category::factory()->create([
+        $electronics = Category::factory()->create([
             'name' => 'Electronics',
         ]);
 
-        $furniture = Models\Category::factory()->create([
+        $furniture = Category::factory()->create([
             'name' => 'Furniture',
         ]);
 
-        Models\Product::factory()->count(3)->create([
+        Product::factory()->count(3)->create([
             'category_id' => $electronics->id,
         ]);
 
-        Models\Product::factory()->count(2)->create([
+        Product::factory()->count(2)->create([
             'category_id' => $furniture->id,
         ]);
 
@@ -65,7 +88,7 @@ describe('GET /api/products', function () {
         ($this->grantPermission)('view_all_products');
         ($this->authenticate)();
 
-        Models\Category::factory()->create([
+        Category::factory()->create([
             'name' => 'Electronics',
         ]);
 
@@ -101,7 +124,7 @@ describe('GET /api/products/{product}', function () {
         ($this->grantPermission)('view_any_product');
         ($this->authenticate)();
 
-        $product = Models\Product::factory()->create();
+        $product = Product::factory()->create();
 
         $this->getJson(route('products.show', $product))
             ->assertOk()
@@ -114,10 +137,10 @@ describe('GET /api/products/{product}', function () {
         ($this->grantPermission)('view_any_product');
         ($this->authenticate)();
 
-        $user = Models\User::factory()->create();
-        $category = Models\Category::factory()->create();
+        $user = User::factory()->create();
+        $category = Category::factory()->create();
 
-        $product = Models\Product::factory()->create([
+        $product = Product::factory()->create([
             'user_id'     => $user->id,
             'category_id' => $category->id,
         ]);
@@ -131,14 +154,14 @@ describe('GET /api/products/{product}', function () {
     it('denies users without the required permission', function () {
         ($this->authenticate)();
 
-        $product = Models\Product::factory()->create();
+        $product = Product::factory()->create();
 
         $this->getJson(route('products.show', $product))
             ->assertForbidden();
     });
 
     it('rejects unauthenticated requests', function () {
-        $product = Models\Product::factory()->create();
+        $product = Product::factory()->create();
 
         $this->getJson(route('products.show', $product))
             ->assertUnauthorized();
@@ -148,7 +171,7 @@ describe('GET /api/products/{product}', function () {
         ($this->grantPermission)('view_any_product');
         ($this->authenticate)();
 
-        $this->getJson(route('products.show', 9999))
+        $this->getJson('/api/products/999999')
             ->assertNotFound();
     });
 
@@ -163,7 +186,7 @@ describe('POST /api/products', function () {
         ($this->grantPermission)('create_product');
         ($this->authenticate)();
 
-        $category = Models\Category::factory()->create();
+        $category = Category::factory()->create();
 
         $data = [
             'name'        => 'Gaming Laptop',
@@ -183,7 +206,7 @@ describe('POST /api/products', function () {
     it('denies users without the required permission', function () {
         ($this->authenticate)();
 
-        $category = Models\Category::factory()->create();
+        $category = Category::factory()->create();
 
         $this->postJson(route('products.store'), [
             'name'        => 'Gaming Laptop',
@@ -195,13 +218,13 @@ describe('POST /api/products', function () {
     });
 
     it('rejects unauthenticated requests', function () {
-        $category = Models\Category::factory()->create();
+        $category = Category::factory()->create();
 
         $this->postJson(route('products.store'), [
             'name'        => 'Gaming Laptop',
             'price'       => 100,
             'category_id' => $category->id,
-            'user_id'     => Models\User::factory()->create()->id,
+            'user_id'     => User::factory()->create()->id,
         ])
             ->assertUnauthorized();
     });
@@ -217,7 +240,7 @@ describe('PUT /api/products/{product}', function () {
         ($this->grantPermission)('update_own_product');
         ($this->authenticate)();
 
-        $product = Models\Product::factory()->create([
+        $product = Product::factory()->create([
             'user_id' => $this->user->id,
         ]);
 
@@ -241,7 +264,7 @@ describe('PUT /api/products/{product}', function () {
         ($this->grantPermission)('update_own_product');
         ($this->authenticate)();
 
-        $product = Models\Product::factory()->create([
+        $product = Product::factory()->create([
             'user_id' => $this->user->id,
         ]);
 
@@ -256,7 +279,7 @@ describe('PUT /api/products/{product}', function () {
         ($this->grantPermission)('update_own_product');
         ($this->authenticate)();
 
-        $product = Models\Product::factory()->create([
+        $product = Product::factory()->create([
             'user_id' => $this->user->id,
         ]);
 
@@ -271,7 +294,7 @@ describe('PUT /api/products/{product}', function () {
         ($this->grantPermission)('update_own_product');
         ($this->authenticate)();
 
-        $product = Models\Product::factory()->create();
+        $product = Product::factory()->create();
 
         expect($product->user_id)->not->toBe($this->user->id);
 
@@ -289,7 +312,7 @@ describe('PUT /api/products/{product}', function () {
     it('denies users without the required permission', function () {
         ($this->authenticate)();
 
-        $product = Models\Product::factory()->create([
+        $product = Product::factory()->create([
             'user_id' => $this->user->id,
         ]);
 
@@ -303,15 +326,15 @@ describe('PUT /api/products/{product}', function () {
         ($this->grantPermission)('update_own_product');
         ($this->authenticate)();
 
-        $product = Models\Product::factory()->create([
+        $product = Product::factory()->create([
             'user_id' => $this->user->id,
         ]);
 
         $originalCategory = $product->category_id;
 
         $this->putJson(route('products.update', $product), [
-            'category_id' => Models\Category::factory()->create()->id,
-            'user_id'     => Models\User::factory()->create()->id,
+            'category_id' => Category::factory()->create()->id,
+            'user_id'     => User::factory()->create()->id,
         ])
             ->assertOk();
 
@@ -326,7 +349,7 @@ describe('PUT /api/products/{product}', function () {
         ($this->grantPermission)('update_own_product');
         ($this->authenticate)();
 
-        $this->putJson(route('products.show', 9999), [
+        $this->putJson('/api/products/999999', [
             'name' => 'Updated Product',
         ])
             ->assertNotFound();
@@ -343,7 +366,7 @@ describe('DELETE /api/products/{product}', function () {
         ($this->grantPermission)('delete_own_product');
         ($this->authenticate)();
 
-        $product = Models\Product::factory()->create([
+        $product = Product::factory()->create([
             'user_id' => $this->user->id,
         ]);
 
@@ -359,7 +382,7 @@ describe('DELETE /api/products/{product}', function () {
         ($this->grantPermission)('delete_own_product');
         ($this->authenticate)();
 
-        $product = Models\Product::factory()->create();
+        $product = Product::factory()->create();
 
         expect($product->user_id)->not->toBe($this->user->id);
 
@@ -374,7 +397,7 @@ describe('DELETE /api/products/{product}', function () {
     it('denies users without the required permission', function () {
         ($this->authenticate)();
 
-        $product = Models\Product::factory()->create([
+        $product = Product::factory()->create([
             'user_id' => $this->user->id,
         ]);
 
@@ -383,7 +406,7 @@ describe('DELETE /api/products/{product}', function () {
     });
 
     it('rejects unauthenticated requests', function () {
-        $product = Models\Product::factory()->create();
+        $product = Product::factory()->create();
 
         $this->deleteJson(route('products.destroy', $product))
             ->assertUnauthorized();

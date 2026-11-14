@@ -2,7 +2,7 @@
 
 > A Laravel 13+ powered API boilerplate. This boilerplate was built to give a good starting off point for RESTful
 > API's using Laravel 13+. It includes examples of using policies, observers, gates, permissions, model resources,
-> a custom `AuthorizeResource` controller attribute, enhanced JSON error handling and more.
+> a custom `AuthorizeController` controller attribute, enhanced JSON error handling and more.
 >
 > All files that are unrelated to an API (views, `package.json`, `app.ts`, `bootstrap.ts`, etc.) have been removed and
 > all that is left is a robust API shell. All tests are written using PestPHP and are included in the codebase.
@@ -18,7 +18,7 @@
 ## Included in this repo:
 
 - Example controllers
-    - with appropriate request classes and resource routes. Also included is the `AuthorizeResource` attribute which
+    - with appropriate request classes and resource routes. Also included is the `AuthorizeController` attribute which
       allows you to run `Authorize` on all controller action methods by including a single attribute in the controller
       and not one attribute per method
     - example query filtering using `spatie/laravel-query-builder`

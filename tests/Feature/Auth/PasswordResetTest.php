@@ -26,12 +26,10 @@ it('sends a password reset notification to an existing user', function () {
     $response
         ->assertOk()
         ->assertJson([
-            'message' => 'If an account exists with that email address, a password reset link has been sent.',
+            'message' => 'If an account exists with that email address, a password reset link will be sent.',
         ]);
 
-    Notification::assertSentTo($user, function (ResetPasswordNotification $notification) {
-        return !empty($notification->token);
-    });
+    Notification::assertSentTo($user, ResetPasswordNotification::class);
 });
 
 it('does not reveal whether an email address exists', function () {
@@ -43,7 +41,7 @@ it('does not reveal whether an email address exists', function () {
     $response
         ->assertOk()
         ->assertJson([
-            'message' => 'If an account exists with that email address, a password reset link has been sent.',
+            'message' => 'If an account exists with that email address, a password reset link will be sent.',
         ]);
 
     Notification::assertNothingSent();

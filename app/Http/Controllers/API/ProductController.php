@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API {
 
     use App\Http\Requests\Products as ProductRequests;
     use App\Http\Filters\Products\GetCategoryName;
-    use App\Http\Attributes\AuthorizeResource;
+    use App\Http\Attributes\AuthorizeController;
     use App\Http\Resources\ProductResource;
     use App\Http\Controllers\Controller;
     use Illuminate\Http\Resources\Json;
@@ -12,7 +12,7 @@ namespace App\Http\Controllers\API {
     use Spatie\QueryBuilder;
     use App\Models\Product;
 
-    #[AuthorizeResource(model: Product::class, parameter: 'product')]
+    #[AuthorizeController(model: Product::class, parameter: 'product')]
     class ProductController extends Controller
     {
         public function index(): Json\ResourceCollection

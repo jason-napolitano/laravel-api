@@ -1,9 +1,6 @@
 <?php
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Guard;
-use App\Models\User;
 use Tests\TestCase;
 
 /*
@@ -21,23 +18,6 @@ pest()->extend(TestCase::class)
  // ->use(RefreshDatabase::class)
     ->in('Feature');
 
-pest()->uses(RefreshDatabase::class);
-
-pest()->beforeEach(function () {
-    $this->user = User::factory()->create();
-
-    $this->grantPermission = function (string $permission): void {
-        $guard = Guard::getDefaultName(User::class);
-
-        Permission::findOrCreate($permission, $guard);
-
-        $this->user->givePermissionTo($permission);
-    };
-
-    $this->authenticate = function (): void {
-        $this->actingAs($this->user);
-    };
-});
 /*
 |--------------------------------------------------------------------------
 | Expectations

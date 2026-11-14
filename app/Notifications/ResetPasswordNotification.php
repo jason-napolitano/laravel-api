@@ -29,7 +29,7 @@ namespace App\Notifications {
                     'email' => $notifiable->getEmailForPasswordReset(),
                 ]);
 
-            return (new MailMessage())
+            return new MailMessage()
                 ->subject('Reset Your Password')
                 ->view('emails.auth.password-reset', [
                     'user'  => $notifiable,
