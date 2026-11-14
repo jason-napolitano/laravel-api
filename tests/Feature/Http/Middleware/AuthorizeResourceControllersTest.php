@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Routing\Attributes\Controllers\Authorize;
-use App\Http\Middleware\TestControllers;
+use App\Http\Middleware\AuthorizeResourceControllers;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Http\Attributes\AuthorizeController;
 use Illuminate\Support\Facades\Route;
@@ -12,10 +12,10 @@ use App\Models\User;
 uses(RefreshDatabase::class);
 
 beforeEach(function () {
-    Route::middleware(['api', TestControllers::class])
+    Route::middleware(['api', AuthorizeResourceControllers::class])
         ->get('/_tests/products', [TestController::class, 'index',]);
 
-    Route::middleware(['api', TestControllers::class])
+    Route::middleware(['api', AuthorizeResourceControllers::class])
         ->put('/_tests/products/{product}', [TestController::class, 'update',]);
 });
 
