@@ -1,31 +1,39 @@
 # Laravel API
 
-> A Laravel 13+ powered API boilerplate. This boilerplate was built to give a good starting off point for RESTful
-> API's using Laravel 13+. It includes examples of using policies, observers, gates, permissions, model resources,
-> a custom `AuthorizeController` controller attribute, enhanced JSON error handling and more.
->
-> All files that are unrelated to an API (views, `package.json`, `app.ts`, `bootstrap.ts`, etc.) have been removed and
-> all that is left is a robust API shell. All tests are written using PestPHP and are included in the codebase.
+> This is a Laravel 13+ powered API boilerplate. This boilerplate includes examples of using policies, observers, gates,
+> permissions, model resources, a custom `AuthorizeController` attribute, enhanced JSON error handling and more.
 >
 > I built this boilerplate to circumvent the need to constantly implement these features each time I build an API using
 > Laravel 13. Since (at the time of creating this) there is no viable API starter-kit for Laravel that fits my needs, I
 > felt it prudent to create one for my own use-cases.
 >
 > The sole objective is to give a balanced and configurable starting point with good out-of-the-box features, and
-> examples of how to build an API architecture the "Laravel Way". This _should_ eliminate unnecessary code and allow 
+> examples of how to build an API architecture the "Laravel Way". This _should_ eliminate unnecessary code and allow
 > the application to run as optimally as possible.
+>
+> All files that are unrelated to an API (unnecessary views, `package.json`, `app.ts`, `bootstrap.ts`, etc.) have been
+> removed and all that is left is a robust API shell.
+>
+> All tests are written using PestPHP and are included in the codebase.
 
 ## Included in this repo:
 
+- Sanctum implementation:
+    - Laravel Sanctum is used to secure the API.
 - Example controllers
     - with appropriate request classes and resource routes. Also included is the `AuthorizeController` attribute which
-      allows you to run `Authorize` on all controller action methods by including a single attribute in the controller
-      and not one attribute per method
+      allows you to run `Authorize` on all resource controller action methods by including a single attribute on the
+      controller class and not one attribute per method
     - example query filtering using `spatie/laravel-query-builder`
-    - authentication controllers which are protected by `sanctum` as well as the necessary logic to log a user in,
-      assign the user a token and log a user out of one, or multiple devices
+    - authentication controllers which as well as the necessary logic to log a user in, assign the user a token and log
+      a user out of one, or multiple devices
+- Forgot Password / Password Reset:
+    - the `ForgotPasswordController` is used to send a password reset link, and verify the password reset functionality.
+    - the `ResetPasswordNotification` is used to send the user their email: allowing them to reset their password.
+    - a blade view is used when sending emails using the  `ResetPasswordNotification`. It is a basic,
+      customizable file that uses the Tailwind CDN for styling.
 - Example models:
-    - with appropriate relationship eager loaded and all policies written and authorized using
+    - relationships have been eager loaded and all the relevant policies authorize model actions using
       `spatie/laravel-permission`
     - resource classes are used to shape the model data
     - observers to allow for updating model fields upon creating and updating a model
@@ -35,14 +43,16 @@
 - Custom config:
     - `config/auth.php` has been updated to include two custom properties for the default role of a user, and the
       default admin role
+    - `config/app.php` has been updated to include a frontend url to use when performing actions that require that this
+      URL be present (such as resetting passwords)
 - Migrations, seeders, factories:
     - All database data for testing is included via seeders, migrations and factories
 - Fully tested codebase:
-    - All tests are written using `PestPHP`. All of the tests can
+    - All tests are written using `PestPHP`. All tests can
       be [found here](https://github.com/jason-napolitano/laravel-api/tree/main/tests)
 
 ## Future implementations:
-- [x] Forgot password functionality
+
 - [ ] API based OTP system
 
 ## Setup
