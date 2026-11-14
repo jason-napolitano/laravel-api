@@ -23,7 +23,8 @@
 - Example controllers
     - with appropriate request classes and resource routes. Also included is the `AuthorizeController` attribute which
       allows you to run `Authorize` on all resource controller action methods by including a single attribute on the
-      controller class and not one attribute per method
+      controller class and not one attribute per method. This was accomplished with a custom
+      `AuthorizeResourceControllers` middleware implementation
     - example query filtering using `spatie/laravel-query-builder`
     - authentication controllers as well as the necessary logic to log a user in, assign the user a token and log
       a user out of one, or multiple devices
