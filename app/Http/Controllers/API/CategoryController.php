@@ -6,7 +6,6 @@ namespace App\Http\Controllers\API {
     use App\Http\Attributes\AuthorizeController;
     use App\Http\Resources\CategoryResource;
     use App\Http\Controllers\Controller;
-    use App\Models\Setting;
     use Illuminate\Http\Resources\Json;
     use Illuminate\Http\Response;
     use App\Models\Category;
