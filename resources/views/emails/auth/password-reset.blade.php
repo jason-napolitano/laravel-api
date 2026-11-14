@@ -28,7 +28,7 @@
                 </article>
 
                 <article class="px-4 py-2 text-center">
-                    <a href="{{ $url }}" class="px-2 py-1 bg-stone-300">
+                    <a href="{{ $url }}" class="px-2 py-1 bg-stone-300 hover:bg-stone-200 transition ease-in-out">
                         Reset Password
                     </a>
                 </article>
