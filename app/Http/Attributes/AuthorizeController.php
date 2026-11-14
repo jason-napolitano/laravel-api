@@ -9,6 +9,7 @@ namespace App\Http\Attributes {
     {
         public function __construct(public string $model, public string $parameter)
         {
+            // ...
         }
     }
 }

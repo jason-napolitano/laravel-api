@@ -2,10 +2,12 @@
 
 namespace App\Http\Middleware {
 
+    use Illuminate\Routing\Attributes\Controllers\Authorize;
     use Symfony\Component\HttpFoundation\Response;
     use App\Http\Attributes\AuthorizeController;
     use Illuminate\Support\Facades\Gate;
     use Illuminate\Http\Request;
+    use ReflectionMethod;
     use ReflectionClass;
     use Closure;
 
@@ -36,6 +38,13 @@ namespace App\Http\Middleware {
             $controller = $route->getController();
 
             $method = $route->getActionMethod();
+
+            // Check for Laravel's native Authorize attribute.
+            $reflection = new ReflectionMethod($controller, $method);
+
+            if ($reflection->getAttributes(Authorize::class)) {
+                return $next($request);
+            }
 
             $reflection = new ReflectionClass($controller);
 
