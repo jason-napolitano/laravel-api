@@ -27,7 +27,7 @@
                     </p>
                 </article>
 
-                <article class="px-4 py-2 text-center">
+                <article class="text-center">
                     <a href="{{ $url }}" class="px-2 py-1 bg-stone-300 hover:bg-stone-200 transition ease-in-out">
                         Reset Password
                     </a>
@@ -45,6 +45,7 @@
                     </a>
                 </footer>
             </div>
+            <div class="text-stone-400/85 text-xs">You can ignore this message if you did not request a password reset</div>
         </div>
     </body>
 </html>
