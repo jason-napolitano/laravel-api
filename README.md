@@ -30,8 +30,8 @@
 - Forgot Password / Password Reset:
     - the `ForgotPasswordController` is used to send a password reset link, and verify the password reset functionality.
     - the `ResetPasswordNotification` is used to send the user their email: allowing them to reset their password.
-    - a blade view is used when sending emails using the  `ResetPasswordNotification`. It is a basic,
-      customizable file that uses the Tailwind CDN for styling.
+    - a blade view is used when sending emails using  `ResetPasswordNotification`. It is a basic,
+      customizable file that uses Tailwind via the official Tailwind CDN.
 - Example models:
     - relationships have been eager loaded and all the relevant policies authorize model actions using
       `spatie/laravel-permission`
