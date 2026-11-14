@@ -25,7 +25,7 @@
       allows you to run `Authorize` on all resource controller action methods by including a single attribute on the
       controller class and not one attribute per method
     - example query filtering using `spatie/laravel-query-builder`
-    - authentication controllers which as well as the necessary logic to log a user in, assign the user a token and log
+    - authentication controllers as well as the necessary logic to log a user in, assign the user a token and log
       a user out of one, or multiple devices
 - Forgot Password / Password Reset:
     - the `ForgotPasswordController` is used to send a password reset link, and verify the password reset functionality.
@@ -36,7 +36,7 @@
     - relationships have been eager loaded and all the relevant policies authorize model actions using
       `spatie/laravel-permission`
     - resource classes are used to shape the model data
-    - observers to allow for updating model fields upon creating and updating a model
+    - observers are used to modify model properties upon creating and updating the model
 - Custom `bootstrap/app.php`:
     - `bootstrap/app.php` has been customized to allow for JSON error handling, and custom error messages returned by
       the server
@@ -44,11 +44,11 @@
     - `config/auth.php` has been updated to include two custom properties for the default role of a user, and the
       default admin role
     - `config/app.php` has been updated to include a frontend url to use when performing actions that require that this
-      URL be present (such as resetting passwords)
+      URL is present (such as resetting passwords)
 - Migrations, seeders, factories:
     - All database data for testing is included via seeders, migrations and factories
 - Fully tested codebase:
-    - All tests are written using `PestPHP`. All tests can
+    - All tests are written using `PestPHP`. The application tests can
       be [found here](https://github.com/jason-napolitano/laravel-api/tree/main/tests)
 
 ## Future implementations:
