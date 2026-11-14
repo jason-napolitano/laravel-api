@@ -8,16 +8,12 @@
     </head>
 
     <body>
-    <div class="flex items-center justify-center h-screen">
+        <div class="flex flex-col gap-4 items-center justify-center h-screen">
             <div class="space-y-2 border border-stone-300 rounded-sm shadow">
                 <header class="space-y-2 px-6 py-4 border-b border-stone-300 bg-stone-50">
                     <h1 class="text-center text-2xl">
-                        Reset Password
+                        Hey there, {{ $user->name }}!
                     </h1>
-
-                    <p class="px-2 py-1 bg-blue-200 rounded-sm text-blue-700 text-center">
-                        If you did not request a password reset, you can safely ignore this email.
-                    </p>
                 </header>
 
                 <article class="px-6 py-4 space-y-2 text-zinc-400 text-center">
@@ -44,10 +40,11 @@
                         paste the following URL into your browser:
                     </p>
 
-                    <a href="{{ $url }}" class="text-blue-400">
-                        {{ $url }}
+                    <a href="{{ $url }}" class="text-blue-400" title="{{ $url }}">
+                        {{ str($url)->limit(50) }}
                     </a>
                 </footer>
-            </div></div>
+            </div>
+        </div>
     </body>
 </html>
