@@ -79,7 +79,6 @@ describe('GET /api/roles', function () {
 });
 
 describe('GET /api/roles/{role}', function () {
-
     it('returns a role', function () {
         ($this->authenticate)();
 
@@ -150,6 +149,8 @@ describe('DELETE /api/roles/{role}', function () {
 
         $this->deleteJson(route('roles.destroy', $role))
             ->assertNoContent();
+
+        $this->assertDatabaseEmpty('roles');
     });
 
     it('returns a 404 when the role does not exist', function () {
