@@ -1,51 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Reset Your Password</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Your Password</title>
+</head>
 
-    <body>
-        <div class="flex flex-col gap-4 items-center justify-center h-screen">
-            <div class="space-y-2 border border-stone-300 rounded-sm shadow">
-                <header class="space-y-2 px-6 py-4 border-b border-stone-300 bg-stone-50">
-                    <h1 class="text-center text-2xl">
-                        Hey there, {{ $user->name }}!
-                    </h1>
-                </header>
+<body style="
+    margin: 0;
+    padding: 40px 15px;
+    background-color: #f5f5f4;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #27272a;
+">
 
-                <article class="px-6 py-4 space-y-2 text-zinc-400 text-center">
+<table role="presentation"
+       width="100%"
+       cellpadding="0"
+       cellspacing="0"
+       border="0">
 
-                    <p>
-                        We've received a request to reset the password associated with your account.
-                    </p>
+    <tr>
+        <td align="center">
 
-                    <p>
-                        This password reset link will expire in {{ config('auth.passwords.users.expire') }} minutes.
-                    </p>
-                </article>
+            <table role="presentation"
+                   width="100%"
+                   cellpadding="0"
+                   cellspacing="0"
+                   border="0"
+                   style="
+                           max-width: 600px;
+                           background-color: #ffffff;
+                           border: 1px solid #d6d3d1;
+                           border-radius: 4px;
+                           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                       ">
 
-                <article class="text-center">
-                    <a href="{{ $url }}" class="px-2 py-1 bg-stone-300 hover:bg-stone-200 transition ease-in-out">
-                        Reset Password
-                    </a>
-                </article>
+                <!-- Header -->
+                <tr>
+                    <td align="center"
+                        style="
+                                padding: 24px;
+                                background-color: #fafaf9;
+                                border-bottom: 1px solid #d6d3d1;
+                            ">
 
-                <footer class="px-6 py-4 border-t border-stone-300 text-center">
+                        <h1 style="
+                                margin: 0;
+                                font-size: 24px;
+                                font-weight: normal;
+                                line-height: 1.4;
+                                color: #292524;
+                            ">
+                            Hey there, {{ $user->name }}!
+                        </h1>
 
-                    <p class="text-zinc-400">
-                        If the button above doesn't work, copy and
-                        paste the following URL into your browser:
-                    </p>
+                    </td>
+                </tr>
 
-                    <small class="text-blue-400">
-                        {{ $url }}
-                    </small>
-                </footer>
-            </div>
-            <div class="text-stone-400/85 text-xs">You can ignore this message if you did not request a password reset</div>
-        </div>
-    </body>
+                <!-- Message -->
+                <tr>
+                    <td align="center"
+                        style="
+                                padding: 24px;
+                                color: #a1a1aa;
+                                font-size: 15px;
+                                line-height: 1.6;
+                            ">
+
+                        <p style="margin: 0 0 12px;">
+                            We've received a request to reset the
+                            password associated with your account.
+                        </p>
+
+                        <p style="margin: 0;">
+                            This password reset link will expire in
+                            {{ config('auth.passwords.users.expire') }}
+                            minutes.
+                        </p>
+
+                    </td>
+                </tr>
+
+                <!-- Reset Button -->
+                <tr>
+                    <td align="center"
+                        style="padding: 10px 24px 24px;">
+
+                        <a href="{{ $url }}"
+                           style="
+                                   display: inline-block;
+                                   padding: 10px 20px;
+                                   background-color: #d6d3d1;
+                                   color: #292524;
+                                   font-size: 14px;
+                                   text-decoration: none;
+                                   border-radius: 3px;
+                               ">
+                            Reset Password
+                        </a>
+
+                    </td>
+                </tr>
+
+                <!-- Footer -->
+                <tr>
+                    <td align="center"
+                        style="
+                                padding: 24px;
+                                border-top: 1px solid #d6d3d1;
+                            ">
+
+                        <p style="
+                                margin: 0 0 12px;
+                                color: #a1a1aa;
+                                font-size: 14px;
+                                line-height: 1.5;
+                            ">
+                            If the button above doesn't work, copy and
+                            paste the following URL into your browser:
+                        </p>
+
+                        <p style="
+                                margin: 0;
+                                color: #60a5fa;
+                                font-size: 12px;
+                                line-height: 1.5;
+                                word-break: break-all;
+                            ">
+                            <a href="{{ $url }}"
+                               style="
+                                       color: #60a5fa;
+                                       text-decoration: none;
+                                   ">
+                                {{ $url }}
+                            </a>
+                        </p>
+
+                    </td>
+                </tr>
+
+            </table>
+
+            <!-- Disclaimer -->
+            <table role="presentation"
+                   width="100%"
+                   cellpadding="0"
+                   cellspacing="0"
+                   border="0"
+                   style="max-width: 600px;">
+
+                <tr>
+                    <td align="center"
+                        style="
+                                padding: 16px 10px;
+                                color: #a8a29e;
+                                font-size: 12px;
+                                line-height: 1.5;
+                            ">
+
+                        You can ignore this message if you did not
+                        request a password reset.
+
+                    </td>
+                </tr>
+
+            </table>
+
+        </td>
+    </tr>
+
+</table>
+
+</body>
 </html>

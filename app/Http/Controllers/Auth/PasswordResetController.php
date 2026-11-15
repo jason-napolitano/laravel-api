@@ -34,11 +34,13 @@ namespace App\Http\Controllers\Auth {
             if ($status === Password::RESET_THROTTLED) {
                 return response()->json([
                     'message' => 'Please wait before requesting another password reset.',
+                    'status'  => 429
                 ], 429);
             }
 
             return response()->json([
                 'message' => 'If an account exists with that email address, a password reset link will be sent.',
+                'status'  => 200
             ]);
         }
 
@@ -73,11 +75,13 @@ namespace App\Http\Controllers\Auth {
             if ($status === Password::PASSWORD_RESET) {
                 return response()->json([
                     'message' => 'Your password has been successfully reset.',
+                    'status'  => 201
                 ]);
             }
 
             return response()->json([
-                'message' => $status,
+                'message' => 'There was an error resetting your password. The token is invalid or it has expired.',
+                'status'  => 422
             ], 422);
         }
     }
