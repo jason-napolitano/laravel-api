@@ -159,7 +159,7 @@ describe('POST /api/categories', function () {
 
 });
 
-describe('PUT /api/categories/{category}', function () {
+describe('PATCH /api/categories/{category}', function () {
 
     it('updates a category', function () {
         ($this->grantPermission)('update_category');
@@ -172,7 +172,7 @@ describe('PUT /api/categories/{category}', function () {
             'description' => 'Updated category description.',
         ];
 
-        $this->putJson(route('categories.update', $category), $data)
+        $this->patchJson(route('categories.update', $category), $data)
             ->assertOk()
             ->assertJsonPath('data.name', $data['name'])
             ->assertJsonPath('data.description', $data['description']);
@@ -193,7 +193,7 @@ describe('PUT /api/categories/{category}', function () {
             'name' => 'Electronics',
         ]);
 
-        $this->putJson(route('categories.update', $category), [
+        $this->patchJson(route('categories.update', $category), [
             'description' => 'New description.',
         ])
             ->assertOk()
@@ -207,7 +207,7 @@ describe('PUT /api/categories/{category}', function () {
 
         $category = Category::factory()->create();
 
-        $this->putJson(route('categories.update', $category), [])
+        $this->patchJson(route('categories.update', $category), [])
             ->assertOk();
     });
 
@@ -216,7 +216,7 @@ describe('PUT /api/categories/{category}', function () {
 
         $category = Category::factory()->create();
 
-        $this->putJson(route('categories.update', $category), [
+        $this->patchJson(route('categories.update', $category), [
             'name' => 'Updated Electronics',
         ])
             ->assertForbidden();

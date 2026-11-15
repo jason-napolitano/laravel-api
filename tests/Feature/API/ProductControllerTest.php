@@ -234,7 +234,7 @@ describe('POST /api/products', function () {
 // ------------------------------------------------
 // update
 
-describe('PUT /api/products/{product}', function () {
+describe('PATCH /api/products/{product}', function () {
 
     it('updates an owned product', function () {
         ($this->grantPermission)('update_own_product');
@@ -249,7 +249,7 @@ describe('PUT /api/products/{product}', function () {
             'price' => 1499.99,
         ];
 
-        $this->putJson(route('products.update', $product), $data)
+        $this->patchJson(route('products.update', $product), $data)
             ->assertOk()
             ->assertJsonPath('data.name', $data['name'])
             ->assertJsonPath('data.price', $data['price']);
@@ -268,7 +268,7 @@ describe('PUT /api/products/{product}', function () {
             'user_id' => $this->user->id,
         ]);
 
-        $this->putJson(route('products.update', $product), [
+        $this->patchJson(route('products.update', $product), [
             'name'  => $product->name,
             'price' => 200,
         ])
@@ -283,7 +283,7 @@ describe('PUT /api/products/{product}', function () {
             'user_id' => $this->user->id,
         ]);
 
-        $this->putJson(route('products.update', $product), [
+        $this->patchJson(route('products.update', $product), [
             'price' => 250,
         ])
             ->assertOk()
@@ -298,7 +298,7 @@ describe('PUT /api/products/{product}', function () {
 
         expect($product->user_id)->not->toBe($this->user->id);
 
-        $this->putJson(route('products.update', $product), [
+        $this->patchJson(route('products.update', $product), [
             'name' => 'Unauthorized Update',
         ])
             ->assertForbidden();
@@ -316,7 +316,7 @@ describe('PUT /api/products/{product}', function () {
             'user_id' => $this->user->id,
         ]);
 
-        $this->putJson(route('products.update', $product), [
+        $this->patchJson(route('products.update', $product), [
             'name' => 'Updated Product',
         ])
             ->assertForbidden();
@@ -332,7 +332,7 @@ describe('PUT /api/products/{product}', function () {
 
         $originalCategory = $product->category_id;
 
-        $this->putJson(route('products.update', $product), [
+        $this->patchJson(route('products.update', $product), [
             'category_id' => Category::factory()->create()->id,
             'user_id'     => User::factory()->create()->id,
         ])
@@ -349,7 +349,7 @@ describe('PUT /api/products/{product}', function () {
         ($this->grantPermission)('update_own_product');
         ($this->authenticate)();
 
-        $this->putJson('/api/products/999999', [
+        $this->patchJson('/api/products/999999', [
             'name' => 'Updated Product',
         ])
             ->assertNotFound();
