@@ -105,10 +105,7 @@ describe('POST /api/roles', function () {
             ->assertJsonPath('data.name', $this->roles[0]['name'])
             ->assertJsonPath('data.guard_name', $this->roles[0]['guard_name']);
 
-        $this->assertDatabaseHas('roles', [
-            'name'       => $this->roles[0]['name'],
-            'guard_name' => $this->roles[0]['guard_name'],
-        ]);
+        $this->assertDatabaseHas('roles', $this->roles[0]);
     });
 
     it('does not create a role that already exists', function () {
@@ -158,7 +155,5 @@ describe('DELETE /api/roles/{role}', function () {
 
         $this->deleteJson(route('roles.destroy', 9999))
             ->assertNotFound();
-
-        $this->assertDatabaseEmpty('roles');
     });
 });

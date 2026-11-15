@@ -7,7 +7,6 @@ namespace App\Http\Controllers\API {
     use App\Http\Resources\RoleResource;
     use Illuminate\Http\Resources\Json;
     use Illuminate\Http\Response;
-    use Illuminate\Http\Request;
     use App\Models\Role;
 
     class RoleController extends Controller
