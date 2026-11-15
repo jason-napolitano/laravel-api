@@ -11,4 +11,9 @@ Route::middleware(['auth:sanctum', 'authorize-resources'])->group(function () {
     // ------------------------------------------------
     // products
     Route::apiResource('products', Controllers\API\ProductController::class);
+
+    // ------------------------------------------------
+    // roles
+    Route::apiResource('roles', Controllers\API\RoleController::class);
+
 });
