@@ -14,10 +14,7 @@ namespace Database\Seeders {
         {
             // --------------------------------------------
             // categories
-            Permission::create(['name' => 'update_settings']);
-
-            // --------------------------------------------
-            // categories
+            Permission::create(['name' => 'restore_category']);
             Permission::create(['name' => 'update_category']);
             Permission::create(['name' => 'delete_category']);
             Permission::create(['name' => 'view_categories']);
@@ -26,6 +23,8 @@ namespace Database\Seeders {
 
             // --------------------------------------------
             // products
+            Permission::create(['name' => 'restore_any_product']);
+            Permission::create(['name' => 'restore_own_product']);
             Permission::create(['name' => 'update_any_product']);
             Permission::create(['name' => 'update_own_product']);
             Permission::create(['name' => 'delete_any_product']);
