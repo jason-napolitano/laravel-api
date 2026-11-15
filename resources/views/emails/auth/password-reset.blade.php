@@ -40,9 +40,9 @@
                         paste the following URL into your browser:
                     </p>
 
-                    <a href="{{ $url }}" class="text-blue-400" title="{{ $url }}">
-                        {{ str($url)->limit(50) }}
-                    </a>
+                    <small class="text-blue-400">
+                        {{ $url }}
+                    </small>
                 </footer>
             </div>
             <div class="text-stone-400/85 text-xs">You can ignore this message if you did not request a password reset</div>
