@@ -136,6 +136,13 @@ describe('PATCH /api/roles/{role}', function () {
             'name' => $data['name'],
         ]);
     });
+
+    it('returns a 404 when the role does not exist', function () {
+        ($this->authenticate)();
+
+        $this->patchJson(route('roles.destroy', 9999))
+            ->assertNotFound();
+    });
 });
 
 describe('DELETE /api/roles/{role}', function () {
