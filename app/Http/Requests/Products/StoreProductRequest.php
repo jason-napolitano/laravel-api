@@ -14,10 +14,10 @@ namespace App\Http\Requests\Products {
         public function rules(): array
         {
             return [
-                'name'        => 'required|string',
-                'price'       => 'required|numeric|min:0',
-                'category_id' => 'required|string|exists:categories,id',
-                'user_id'     => 'required|string|exists:users,id',
+                'name'        => ['required', 'string'],
+                'price'       => ['required', 'numeric', 'min:0'],
+                'category_id' => ['required', 'string', 'exists:categories,id'],
+                'user_id'     => [['required', 'string', 'exists:users,id']],
             ];
         }
     }

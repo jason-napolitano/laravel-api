@@ -15,8 +15,8 @@ namespace App\Http\Requests\Categories {
         public function rules(): array
         {
             return [
-                'name' => ['nullable', 'string', Rule::unique('categories', 'name')->ignore($this->route('category')),],
-                'description' => 'nullable|string',
+                'name'        => ['sometimes', 'string', Rule::unique('categories', 'name')->ignore($this->route('category')),],
+                'description' => ['sometimes', 'string']
             ];
         }
     }

@@ -15,8 +15,8 @@ namespace App\Http\Requests\Products {
         public function rules(): array
         {
             return [
-                'name' => ['nullable', 'string', Rule::unique('products', 'name')->ignore($this->route('product')),],
-                'price' => 'nullable|numeric|min:0',
+                'name'  => ['nullable', 'string', Rule::unique('products', 'name')->ignore($this->route('product')),],
+                'price' => ['required', 'numeric', 'min:0'],
             ];
         }
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Auth {
 
+    use Illuminate\Validation\Rules\Password;
     use App\Http\Requests\BaseRequest;
 
     class AuthenticateUserRequest extends BaseRequest
@@ -14,9 +15,9 @@ namespace App\Http\Requests\Auth {
         public function rules(): array
         {
             return [
-                'email'       => 'required|string|email|max:255|exists:users,email',
-                'device_name' => 'required|string|max:255',
-                'password'    => 'required|string|min:6',
+                'email'       => ['required', 'string', 'email', 'max:255', 'exists:users,email'],
+                'device_name' => ['required', 'string', 'max:255'],
+                'password'    => ['required', 'string'],
             ];
         }
     }

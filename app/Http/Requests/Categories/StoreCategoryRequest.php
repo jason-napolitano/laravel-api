@@ -14,8 +14,8 @@ namespace App\Http\Requests\Categories {
         public function rules(): array
         {
             return [
-                'name'        => 'required|string|unique:categories',
-                'description' => 'required|string',
+                'name'        => ['required', 'string', 'unique:categories,name'],
+                'description' => ['required', 'string'],
             ];
         }
     }
