@@ -2,7 +2,6 @@
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Spatie\Permission\Guard;
-use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
 

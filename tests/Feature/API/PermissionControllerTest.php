@@ -132,21 +132,21 @@ describe('PATCH /api/permissions/{permission}', function () {
 });
 
 describe('DELETE /api/permissions/{permission}', function () {
-   it('deletes a permission', function () {
-       ($this->authenticate)();
+    it('deletes a permission', function () {
+        ($this->authenticate)();
 
-       $permission = Permission::create($this->permissions[0]);
+        $permission = Permission::create($this->permissions[0]);
 
-       $this->deleteJson(route('permissions.destroy', $permission))
-           ->assertNoContent();
+        $this->deleteJson(route('permissions.destroy', $permission))
+            ->assertNoContent();
 
-       $this->assertDatabaseEmpty('permissions');
-   });
+        $this->assertDatabaseEmpty('permissions');
+    });
 
-   it('returns a 404 when a permission does not exist', function () {
-       ($this->authenticate)();
+    it('returns a 404 when a permission does not exist', function () {
+        ($this->authenticate)();
 
-       $this->deleteJson(route('permissions.destroy', 9999))
-           ->assertNotFound();
-   });
+        $this->deleteJson(route('permissions.destroy', 9999))
+            ->assertNotFound();
+    });
 });

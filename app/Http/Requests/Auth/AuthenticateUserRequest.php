@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Auth {
 
-    use Illuminate\Validation\Rules\Password;
     use App\Http\Requests\BaseRequest;
 
     class AuthenticateUserRequest extends BaseRequest
