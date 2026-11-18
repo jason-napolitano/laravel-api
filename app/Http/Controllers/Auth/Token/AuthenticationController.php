@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Auth {
+namespace App\Http\Controllers\Auth\Token {
 
     use Illuminate\Validation\ValidationException;
     use App\Http\Requests\Auth as AuthRequests;
     use App\Http\Controllers\Controller;
-    use Illuminate\Support\Facades\Hash;
     use App\Http\Resources\UserResource;
+    use Illuminate\Support\Facades\Hash;
     use Illuminate\Http;
     use App\Models\User;
 
@@ -15,11 +15,11 @@ namespace App\Http\Controllers\Auth {
         /**
          * Authenticate a user
          *
-         * @param AuthRequests\AuthenticateUserRequest $request
+         * @param \App\Http\Requests\Auth\Token\AuthenticationRequest $request
          *
          * @return Http\JsonResponse
          */
-        public function authenticate(AuthRequests\AuthenticateUserRequest $request): Http\JsonResponse
+        public function authenticate(AuthRequests\Token\AuthenticationRequest $request): Http\JsonResponse
         {
             // locate the user
             $user = User::where('email', $request['email'])->first();
@@ -44,11 +44,11 @@ namespace App\Http\Controllers\Auth {
         /**
          * Register a new user
          *
-         * @param AuthRequests\RegisterUserRequest $request
+         * @param \App\Http\Requests\Auth\Token\RegisterUserRequest $request
          *
          * @return Http\JsonResponse
          */
-        public function register(AuthRequests\RegisterUserRequest $request): Http\JsonResponse
+        public function register(AuthRequests\Token\RegisterUserRequest $request): Http\JsonResponse
         {
             // validate the request
             $request->validated();

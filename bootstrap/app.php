@@ -8,12 +8,18 @@ use Illuminate\Http\Request;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
+        web: [
+            __DIR__ . '/../routes/auth/session.php',
+        ],
         api: [
+            __DIR__ . '/../routes/auth/token.php',
             __DIR__ . '/../routes/guarded.php',
-            __DIR__ . '/../routes/auth.php',
         ]
     )
     ->withMiddleware(function (Configuration\Middleware $middleware): void {
+        // stateful api
+        $middleware->statefulApi();
+
         $middleware->alias([
             'authorize-resources' => AuthorizeResourceControllers::class,
         ]);

@@ -26,8 +26,11 @@
       action methods by including a single attribute on the controller class and not one attribute per method. This is
       accomplished with a custom `AuthorizeResourceControllers` middleware implementation
     - example query filtering using `spatie/laravel-query-builder`
-    - authentication controllers as well as the necessary logic to log a user in, assign the user a token and log
-      a user out of one, or multiple devices
+    - authentication controllers:
+      - token based authentication for mobile devices: as well as the necessary logic to log a user in, assign the user a token and log
+        a user out of one, or multiple devices
+      - session based authentication for SPA's: as well as the necessary logic to log a user in, generate a session and log
+        a user out
 - Forgot Password / Password Reset:
     - the `ForgotPasswordController` is used to send a password reset link, and verify the password reset functionality.
     - the `ResetPasswordNotification` is used to send the user their email: allowing them to reset their password.
